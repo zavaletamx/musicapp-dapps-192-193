@@ -23,7 +23,7 @@
             android:id="@+id/iv_userpic"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:src="@drawable/userpic"
+            android:src="@drawable/placeholder"
             android:scaleType="centerCrop"
             />
         </androidx.cardview.widget.CardView>

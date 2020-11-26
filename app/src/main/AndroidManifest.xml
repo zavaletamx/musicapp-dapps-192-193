@@ -13,9 +13,17 @@
         android:theme="@style/Theme.ProyectoFinalDAPPSZavaleta"
         android:usesCleartextTraffic="true">
 
-        <activity android:name=".RegistroActivity" android:label="Registro" />
+        <activity
+            android:name=".ui.album.AlbumDetalleActivity"
+            android:label="Canciones del Álbum"/>
 
-        <activity android:name=".LoginActivity" android:label="MusicApp">
+        <activity
+            android:name=".RegistroActivity"
+            android:label="Registro" />
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="MusicApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +35,6 @@
             android:name=".MainActivity"
             android:label="MusicApp - Home"
             android:theme="@style/Theme.ProyectoFinalDAPPSZavaleta.NoActionBar" />
-
     </application>
 
 </manifest>

@@ -23,11 +23,6 @@
             android:title="Álbums" />
 
         <item
-            android:id="@+id/nav_canciones"
-            android:icon="@drawable/ic_library_music"
-            android:title="Canciones" />
-
-        <item
             android:id="@+id/nav_listad"
             android:icon="@drawable/ic_shopping_basket"
             android:title="Lista de deseos" />

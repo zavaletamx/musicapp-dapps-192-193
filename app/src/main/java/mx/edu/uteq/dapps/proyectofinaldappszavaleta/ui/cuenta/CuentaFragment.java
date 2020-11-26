@@ -134,7 +134,9 @@ public class CuentaFragment extends Fragment {
                                             .with(getActivity())
                                             .load(
                                                     datosUsuario.getString("userpic")
-                                            ).into(ivUserpic);
+                                            )
+                                            .placeholder(R.drawable.placeholder)
+                                            .into(ivUserpic);
                                 }
                             }
                         } catch(Exception e) {
