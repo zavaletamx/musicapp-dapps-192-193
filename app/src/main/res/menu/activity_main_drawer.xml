@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inicio"
+            android:icon="@drawable/ic_home"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/nav_cuenta"
+            android:icon="@drawable/ic_settings"
+            android:title="Mi cuenta" />
+        <item
+            android:id="@+id/nav_interpretes"
+            android:icon="@drawable/ic_supervised_user_circle"
+            android:title="Intérpretes" />
+
+        <item
+            android:id="@+id/nav_albums"
+            android:icon="@drawable/ic_album"
+            android:title="Álbums" />
+
+        <item
+            android:id="@+id/nav_canciones"
+            android:icon="@drawable/ic_library_music"
+            android:title="Canciones" />
+
+        <item
+            android:id="@+id/nav_listad"
+            android:icon="@drawable/ic_shopping_basket"
+            android:title="Lista de deseos" />
+    </group>
+</menu>

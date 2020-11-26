@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_inicio">
+
+    <fragment
+        android:id="@+id/nav_inicio"
+        android:name="mx.edu.uteq.dapps.proyectofinaldappszavaleta.ui.InicioFragment"
+        android:label="Inicio"
+        tools:layout="@layout/fragment_inicio" />
+
+    <fragment
+        android:id="@+id/nav_cuenta"
+        android:name="mx.edu.uteq.dapps.proyectofinaldappszavaleta.ui.cuenta.CuentaFragment"
+        android:label="Mi cuenta"
+        tools:layout="@layout/fragment_cuenta" />
+
+    <fragment
+        android:id="@+id/nav_interpretes"
+        android:name="mx.edu.uteq.dapps.proyectofinaldappszavaleta.ui.InterpretesFragment"
+        android:label="Intérpretes"
+        tools:layout="@layout/fragment_interpretes" />
+
+    <fragment
+        android:id="@+id/nav_albums"
+        android:name="mx.edu.uteq.dapps.proyectofinaldappszavaleta.ui.AlbumsFragment"
+        android:label="Albums"
+        tools:layout="@layout/fragment_albums" />
+
+    <fragment
+        android:id="@+id/nav_canciones"
+        android:name="mx.edu.uteq.dapps.proyectofinaldappszavaleta.ui.CancionesFragment"
+        android:label="Canciones"
+        tools:layout="@layout/fragment_canciones" />
+
+    <fragment
+        android:id="@+id/nav_listad"
+        android:name="mx.edu.uteq.dapps.proyectofinaldappszavaleta.ui.ListaDeseosFragment"
+        android:label="Lista de deseos"
+        tools:layout="@layout/fragment_lista_deseos" />
+</navigation>
