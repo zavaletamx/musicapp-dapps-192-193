@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/nav_listad"
-        android:name="mx.edu.uteq.dapps.proyectofinaldappszavaleta.ui.ListaDeseosFragment"
+        android:name="mx.edu.uteq.dapps.proyectofinaldappszavaleta.ui.listadeseos.ListaDeseosFragment"
         android:label="Lista de deseos"
         tools:layout="@layout/fragment_lista_deseos" />
 </navigation>

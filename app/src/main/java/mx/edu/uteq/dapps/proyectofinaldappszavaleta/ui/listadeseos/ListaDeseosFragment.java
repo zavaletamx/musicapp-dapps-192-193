@@ -1,4 +1,4 @@
-package mx.edu.uteq.dapps.proyectofinaldappszavaleta.ui.album;
+package mx.edu.uteq.dapps.proyectofinaldappszavaleta.ui.listadeseos;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,7 +8,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,6 +18,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,8 +28,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import mx.edu.uteq.dapps.proyectofinaldappszavaleta.R;
+import mx.edu.uteq.dapps.proyectofinaldappszavaleta.ui.album.AlbumAdapter;
 
-public class AlbumsFragment extends Fragment {
+public class ListaDeseosFragment extends Fragment {
 
     private SharedPreferences prefs;
     private String usuarioId;
@@ -35,39 +38,43 @@ public class AlbumsFragment extends Fragment {
     private SwipeRefreshLayout srlAlbums;
     private ListView lvAlbums;
 
-    private AlbumAdapter adaptador;
+    private ListaDeseosAdapter adaptador;
     private JSONArray datos;
 
     private RequestQueue conexionServ;
     private StringRequest peticionServ;
 
-    public AlbumsFragment() {
+    public ListaDeseosFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_albums, container, false);
-
+        View rootView = inflater.inflate(R.layout.fragment_lista_deseos, container, false);
         prefs = getActivity().getSharedPreferences("musicapp", Context.MODE_PRIVATE);
         usuarioId = prefs.getString("usuario_id", null);
 
-        srlAlbums = rootView.findViewById(R.id.srl_albums);
-        lvAlbums = rootView.findViewById(R.id.lv_albums);
+        srlAlbums = rootView.findViewById(R.id.srl_listadeos);
+        lvAlbums = rootView.findViewById(R.id.lv_listadeseos);
 
         conexionServ = Volley.newRequestQueue(getActivity());
 
         datos = new JSONArray();
 
-        adaptador = new AlbumAdapter(getActivity(), datos);
+        adaptador = new ListaDeseosAdapter(getActivity(), datos);
         lvAlbums.setAdapter(adaptador);
 
         srlAlbums.post(new Runnable() {
             @Override
             public void run() {
                 srlAlbums.setRefreshing(true);
-                cargaAlbums();
+                cargaListaDeseos();
             }
         });
 
@@ -75,31 +82,38 @@ public class AlbumsFragment extends Fragment {
             @Override
             public void onRefresh() {
                 srlAlbums.setRefreshing(true);
-                cargaAlbums();
+                cargaListaDeseos();
             }
         });
-
-        // Inflate the layout for this fragment
         return rootView;
     }
 
-    private void cargaAlbums() {
+    private void cargaListaDeseos() {
         peticionServ = new StringRequest(
                 Request.Method.POST,
-                "https://wikiclod.mx/dapps/api-192/album/info",
+                "https://wikiclod.mx/dapps/api-192/listadeseos/mostrar",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
                             JSONObject objRespuesta = new JSONObject(response);
                             if (objRespuesta.getInt("response_code") == 200) {
-                                adaptador = new AlbumAdapter(
-                                        getActivity(),
-                                        objRespuesta.getJSONArray("albums")
+
+                                adaptador = new ListaDeseosAdapter(
+                                    getActivity(),
+                                    objRespuesta.getJSONArray("lista_deseos")
                                 );
                                 lvAlbums.setAdapter(adaptador);
                                 /*Actualizar el adaptador del ListView*/
                                 adaptador.notifyDataSetChanged();
+
+                                if (objRespuesta.getJSONArray("lista_deseos").length() == 0) {
+                                    Snackbar.make(
+                                            getView(),
+                                            "Tu lista de deseos está vacía",
+                                            BaseTransientBottomBar.LENGTH_INDEFINITE
+                                    ).show();
+                                }
                             }
                         }
 
